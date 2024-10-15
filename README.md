@@ -6,5 +6,6 @@ very cool scripts for roblox mostly tsbg yes
 - 2: Thy End Is Now - literally consecutive punches
 - 3: Punishment - literally show with diff anim
 - 4: Crush - teleport to the sky and stomp the ground sending your opponent in the air
+- 
 **Ultimate**
 none yet
