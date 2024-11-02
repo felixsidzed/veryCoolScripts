@@ -9,3 +9,8 @@ very cool scripts for roblox mostly tsbg yes
 - 
 **Ultimate**
 none yet
+
+## Lock On
+- revenge on lock on abusers 😭🙏
+- default hotkey: Z
+- default tpwalk speed: 2
