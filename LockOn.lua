@@ -4,6 +4,7 @@ local hum  = char:WaitForChild("Humanoid")
 local UIS  = cloneref(game:GetService("UserInputService"))
 
 local lockingOn = nil
+local lockOnGui = nil
 
 local scriptSettings = {
 	tpwalk_speed = getgenv().tpwalk_speed or 2,
@@ -40,8 +41,20 @@ UIS.InputBegan:Connect(function(input, p)
 	if input.KeyCode == scriptSettings.hotkey then
 		if lockingOn then
 			lockingOn = nil
+			lockOnGui:Destroy()
 		else
-			lockingOn = getClosestCharacterToPoint(char.HumanoidRootPart.Position, 30)
+			lockingOn = getClosestCharacterToPoint(char.HumanoidRootPart.Position, 50)
+
+			if lockingOn then
+				lockOnGui = Instance.new("BillboardGui", lockingOn.Torso)
+				lockOnGui.Size = UDim2.new(5, 0, 5, 0)
+				lockOnGui.AlwaysOnTop = true
+
+				local img = Instance.new("ImageLabel", lockOnGui)
+				img.Size = UDim2.new(1, 0, 1, 0)
+				img.Image = "rbxassetid://378475097"
+				img.BackgroundTransparency = 1
+			end
 		end
     end
 end)
