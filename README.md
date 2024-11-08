@@ -1,3 +1,6 @@
+# ⚠ NOTE:
+all of the scripts are made for educational purposes and for me to learn lua. i am not responsible for any damage this has done/did.
+
 # very cool very good scripts
 very cool scripts for roblox mostly tsbg yes
 
