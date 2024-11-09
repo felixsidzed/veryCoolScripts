@@ -30,12 +30,11 @@ local function grass2snow(parent)
 
 	parent = parent or (workspace:FindFirstChild("Map") or workspace)
 	local keepMaterial = math.round(math.random(0, 100) / 100) == 0
-	local newMaterial = ({ Enum.Material.Grass, Enum.Material.Snow })[math.round(math.random(100, 200) / 100)]
 	
 	for _, child in parent:GetDescendants() do
 		if child:IsA("BasePart") and isGreen(child.Color) and table.find(grassMaterials, child.Material) then
 			child.BrickColor = BrickColor.new("Institutional white")
-			if not keepMaterial then child.Material = newMaterial end
+			if not keepMaterial then child.Material = Enum.Material.Snow end
 
 			if child:IsA("PartOperation") then
 				child.UsePartColor = true
