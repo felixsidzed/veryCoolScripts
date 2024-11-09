@@ -1,4 +1,4 @@
-﻿local grassMaterials = {
+local grassMaterials = {
 	Enum.Material.Grass,
 	Enum.Material.LeafyGrass
 }
@@ -46,6 +46,8 @@ end
 
 winterSky()
 grass2snow()
+
+game.DescendantAdded:Connect(grass2snow)
 
 local audio = Instance.new("Sound")
 audio.SoundId = "rbxassetid://1838667168"
