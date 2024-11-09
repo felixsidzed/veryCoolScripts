@@ -19,7 +19,7 @@ local function winterSky()
 	skybox.Parent = game.Lighting
 end
 
-local function grass2snow()
+local function grass2snow(parent)
 	local function isGreen(color)
 		local red = color.R * 255
 		local green = color.G * 255
@@ -28,7 +28,7 @@ local function grass2snow()
 		return green > red and green > blue
 	end
 
-	local parent = workspace:FindFirstChild("Map") or workspace
+	parent = parent or (workspace:FindFirstChild("Map") or workspace)
 	local keepMaterial = math.round(math.random(0, 100) / 100) == 0
 	local newMaterial = ({ Enum.Material.Grass, Enum.Material.Snow })[math.round(math.random(100, 200) / 100)]
 	
