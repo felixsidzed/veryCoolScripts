@@ -13,7 +13,7 @@ local function winterSky()
 	skybox.SkyboxRt = "http://www.roblox.com/asset/?id=9457789800"
 	skybox.SkyboxBk = "http://www.roblox.com/asset/?id=9457789056"
 
-	local prev = game.Lighting:FindFirstAncestorOfClass("Sky")
+	local prev = game.Lighting:FindFirstChildOfClass("Sky")
 	if prev then prev:Destroy() end
 
 	skybox.Parent = game.Lighting
