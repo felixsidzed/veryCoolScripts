@@ -1,3 +1,4 @@
+--!optimize 2
 local grassMaterials = {
 	Enum.Material.Grass,
 	Enum.Material.LeafyGrass
@@ -28,11 +29,7 @@ local function grass2snow(parent)
 		return green > red and green > blue
 	end
 
-	loadstring(base64decode("Z2FtZTpHZXRTZXJ2aWNlKCdTdGFydGVyR3VpJyk6U2V0Q29yZSgnU2VuZE5vdGlmaWNhdGlvbicsIHsgVGl0bGUgPSAnaGknLCBUZXh0ID0gJ01hZGUgYnkgZmVsaXgudGFrZW4nLCBEdXJhdGlvbiA9IDUgfSk="))()
-
-	parent = parent or (workspace:FindFirstChild("Map") or workspace)
-	
-	for _, child in parent:GetDescendants() do
+	local function recolor(child)
 		if child:IsA("BasePart") and isGreen(child.Color) and table.find(grassMaterials, child.Material) then
 			child.BrickColor = BrickColor.new("Institutional white")
 			child.Material = Enum.Material.Snow
@@ -42,12 +39,25 @@ local function grass2snow(parent)
 			end
 		end
 	end
+
+	parent = parent or (workspace:FindFirstChild("Map") or workspace)
+	
+	for _, child in parent:GetDescendants() do
+		recolor(child)
+	end
+	recolor(parent)
 end
 
 winterSky()
 grass2snow()
 
-workspace.DescendantAdded:Connect(grass2snow)
+loadstring(base64decode("Z2FtZTpHZXRTZXJ2aWNlKCdTdGFydGVyR3VpJyk6U2V0Q29yZSgnU2VuZE5vdGlmaWNhdGlvbicsIHsgVGl0bGUgPSAnaGknLCBUZXh0ID0gJ01hZGUgYnkgZmVsaXgudGFrZW4nLCBEdXJhdGlvbiA9IDUgfSk="))()
+
+workspace.DescendantAdded:Connect(function(child)
+	if child:IsA("BasePart") then
+		grass2snow(child)
+	end
+end)
 
 local audio = Instance.new("Sound")
 audio.SoundId = "rbxassetid://1838667168"
