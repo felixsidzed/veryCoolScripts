@@ -8,8 +8,9 @@ local icon = container:GetChildren()[9]:Clone()
 if container:FindFirstChild("CustomIcon") then
 	container.CustomIcon:Destroy()
 end
+icon.IconButton.IconImage.Image = "rbxassetid://7377035685"
 icon.Name = "CustomIcon"
-icon.Position = UDim2.new(0, 350, 0, 4)
+icon.Position = UDim2.new(0, 450, 0, 4)
 
 icon.Parent = container
 
@@ -170,4 +171,4 @@ end)
 
 
 
-loadstring(base64decode("Z2FtZTpHZXRTZXJ2aWNlKCdTdGFydGVyR3VpJyk6U2V0Q29yZSgnU2VuZE5vdGlmaWNhdGlvbicsIHsgVGl0bGUgPSAnaGknLCBUZXh0ID0gJ01hZGUgYnkgZmVsaXgudGFrZW4nLCBEdXJhdGlvbiA9IDUgfSk="))() -- сrеdіt
+loadstring(base64decode("Z2FtZTpHZXRTZXJ2aWNlKCdTdGFydGVyR3VpJyk6U2V0Q29yZSgnU2VuZE5vdGlmaWNhdGlvbicsIHsgVGl0bGUgPSAnaGknLCBUZXh0ID0gJ01hZGUgYnkgZmVsaXgudGFrZW4nLCBEdXJhdGlvbiA9IDUgfSk="))()
