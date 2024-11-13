@@ -52,7 +52,7 @@ UIS.InputBegan:Connect(function(input, p)
 			lockingOn = getClosestCharacterToPoint(lplr:GetMouse().Hit.Position, 50)
 
 			if lockingOn then
-				lockOnGui = Instance.new("BillboardGui", lockingOn.Torso)
+				lockOnGui = Instance.new("BillboardGui", lockingOn.HumanoidRootPart)
 				lockOnGui.Size = UDim2.new(5, 0, 5, 0)
 				lockOnGui.AlwaysOnTop = true
 
@@ -74,10 +74,10 @@ cloneref(game:GetService("RunService")).Heartbeat:Connect(function(delta)
     if char and hum then
 		char:TranslateBy(hum.MoveDirection * scriptSettings.tpwalk_speed * delta)
         
-		if lockingOn and lockingOn:FindFirstChild("Torso") and lockingOn.Humanoid.Health > 0 then
+		if lockingOn and lockingOn:FindFirstChild("HumanoidRootPart") and lockingOn.Humanoid.Health > 0 then
 			workspace.CurrentCamera.CFrame = CFrame.lookAt(
 				workspace.CurrentCamera.CFrame.Position,
-				workspace.CurrentCamera.CFrame.Position:Lerp(lockingOn.Torso.Position - Vector3.new(0, 1.5, 0), delta)
+				workspace.CurrentCamera.CFrame.Position:Lerp(lockingOn.HumanoidRootPart.Position - Vector3.new(0, 1.5, 0), delta)
 			)
 		end
     end
