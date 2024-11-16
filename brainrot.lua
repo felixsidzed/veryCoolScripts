@@ -75,13 +75,13 @@ end
 for _, plr in game.Players:GetPlayers() do
 	if not plr.Character then plr.CharacterAdded:Wait() end
 	makeSkibidi(plr)
-	plr.CharacterAdded:Connect(makeSkibidi)
+	plr.CharacterAdded:Connect(function() makeSkibidi(plr) end)
 end
 
 game.Players.PlayerAdded:Connect(function(plr)
 	if not plr.Character then plr.CharacterAdded:Wait() end
 	makeSkibidi(plr)
-	plr.CharacterAdded:Connect(makeSkibidi)
+	plr.CharacterAdded:Connect(function() makeSkibidi(plr) end)
 end)
 
 local sky = game.Lighting:FindFirstChildOfClass("Sky") or Instance.new("Sky")
