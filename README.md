@@ -39,3 +39,6 @@ none yet
 **Ultimate**
 - 2: Freezing Season - table flip but with impact? vfx and different debris
 - 3: Winter's Final Blow - makes serious punch aimable and adds vfx
+
+## Unlock Require
+- possible fix for require for executors that modify the bytecode of a core script
