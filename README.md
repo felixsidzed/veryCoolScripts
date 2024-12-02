@@ -1,6 +1,9 @@
 > [!NOTE]:
 > all of the scripts are made for educational purposes and for me to learn lua. i am not responsible for any damage this can do/did.
 
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
 # very cool very good scripts
 very cool scripts for roblox mostly tsbg yes
 
