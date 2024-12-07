@@ -1,5 +1,6 @@
 local LocalPlayer = game.Players.LocalPlayer
 
+local chargeUp = false
 local killing = false
 
 local function onCharAdded(char)
@@ -7,6 +8,7 @@ local function onCharAdded(char)
 		if not char:FindFirstChild("HumanoidRootPart") then return end
 		if char.Humanoid.Health > 15 then return end
 		if killing then return end
+		if chargeUp then return end
 
 		if not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["4"].Base:FindFirstChild("Cooldown") then
 			-- print("wait 0.5 seconds")
@@ -34,11 +36,13 @@ local function onCharAdded(char)
 			killing = false
 			print("stop")
 		elseif not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["3"].Base:FindFirstChild("Cooldown") then
+			chargeUp = true
 			LocalPlayer.Character.Communicate:FireServer({
 				["Goal"] = "Console Move",
 				["Tool"] = LocalPlayer.Backpack:WaitForChild("Blitz Shot")
 			})
 			task.wait(2.5)
+			chargeUp = false
 			killing = true
 
 			coroutine.wrap(function()
@@ -49,14 +53,16 @@ local function onCharAdded(char)
 				until not killing
 			end)()
 
-			task.wait(1)
+			task.wait(1.25)
 			killing = false
 		elseif not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["2"].Base:FindFirstChild("Cooldown") then
+			chargeUp = true
 			LocalPlayer.Character.Communicate:FireServer({
 				["Goal"] = "Console Move",
 				["Tool"] = LocalPlayer.Backpack:WaitForChild("Ignition Burst")
 			})
 			task.wait(1)
+			chargeUp = false
 			killing = true
 
 			coroutine.wrap(function()
