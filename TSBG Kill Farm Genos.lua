@@ -11,14 +11,11 @@ local function onCharAdded(char)
 		if chargeUp then return end
 
 		if not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["4"].Base:FindFirstChild("Cooldown") then
-			-- print("wait 0.5 seconds")
-			-- task.wait(0.5)
 			killing = true
-			print("start")
 
 			coroutine.wrap(function()
 				local s = tick()
-				while tick() - s < 2 do
+				while tick() - s < 1.65 do
 					local cf = char.HumanoidRootPart.CFrame
 					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cf.Position.X, cf.Position.Y, cf.Position.Z + 65) + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed * 1.25, Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
 					task.wait()
@@ -31,10 +28,8 @@ local function onCharAdded(char)
 				["Tool"] = LocalPlayer.Backpack:WaitForChild("Jet Dive")
 			})
 
-			print("wait 4 seconds")
 			task.wait(4)
 			killing = false
-			print("stop")
 		elseif not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["3"].Base:FindFirstChild("Cooldown") then
 			chargeUp = true
 			LocalPlayer.Character.Communicate:FireServer({
