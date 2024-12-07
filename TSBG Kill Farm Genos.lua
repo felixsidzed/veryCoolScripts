@@ -11,9 +11,9 @@ local function onCharAdded(char)
 			print("start")
 
 			local cf = char.HumanoidRootPart.CFrame
-			LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(char.HumanoidRootPart.Position + Vector3.new(0, 15, 40), Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
+			LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cf.Position.X, cf.Position.Y + 15, cf.Position.Z + 40), Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
 
-			task.wait(0.1)
+			task.wait(0.25)
 			LocalPlayer.Character.Communicate:FireServer({
 				["Goal"] = "Console Move",
 				["Tool"] = LocalPlayer.Backpack:WaitForChild("Jet Dive")
@@ -34,7 +34,7 @@ local function onCharAdded(char)
 			coroutine.wrap(function()
 				repeat
 					local cf = char.HumanoidRootPart.CFrame
-					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(cf.Position + Vector3.new(30, 30, 0), cf.Position)
+					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(cf.Position + Vector3.new(30, 30, 0), cf.Position + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed)
 					task.wait()
 				until not killing
 			end)()
@@ -51,7 +51,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 	end
 
 	if not killing then
-		LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 225, 0)
+		LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 200, 0)
 	end
 end)
 
