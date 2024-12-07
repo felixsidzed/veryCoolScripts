@@ -4,7 +4,11 @@ local killing = false
 
 local function onCharAdded(char)
 	char:WaitForChild("Humanoid"):GetPropertyChangedSignal("Health"):Connect(function()
-		if not killing and char.Humanoid.Health <= 20 and not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["4"].Base:FindFirstChild("Cooldown") then
+		if not char:FindFirstChild("HumanoidRootPart") then return end
+		if char.Humanoid.Health > 15 then return end
+		if killing then return end
+
+		if not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["4"].Base:FindFirstChild("Cooldown") then
 			-- print("wait 0.5 seconds")
 			-- task.wait(0.5)
 			killing = true
@@ -12,9 +16,9 @@ local function onCharAdded(char)
 
 			coroutine.wrap(function()
 				local s = tick()
-				while tick() - s < 4 do
+				while tick() - s < 2 do
 					local cf = char.HumanoidRootPart.CFrame
-					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cf.Position.X, cf.Position.Y, cf.Position.Z + 65) + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed, Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
+					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cf.Position.X, cf.Position.Y, cf.Position.Z + 65) + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed * 1.25, Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
 					task.wait()
 				end
 			end)()
@@ -29,7 +33,7 @@ local function onCharAdded(char)
 			task.wait(4)
 			killing = false
 			print("stop")
-		elseif not killing and char.Humanoid.Health <= 15 and not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["3"].Base:FindFirstChild("Cooldown") then
+		elseif not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["3"].Base:FindFirstChild("Cooldown") then
 			LocalPlayer.Character.Communicate:FireServer({
 				["Goal"] = "Console Move",
 				["Tool"] = LocalPlayer.Backpack:WaitForChild("Blitz Shot")
@@ -40,12 +44,30 @@ local function onCharAdded(char)
 			coroutine.wrap(function()
 				repeat
 					local cf = char.HumanoidRootPart.CFrame
-					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(cf.Position + Vector3.new(30, 30, 0), cf.Position + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed)
+					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(cf.Position + Vector3.new(30, 30, 0), cf.Position + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed * 1.25)
 					task.wait()
 				until not killing
 			end)()
 
 			task.wait(1)
+			killing = false
+		elseif not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["2"].Base:FindFirstChild("Cooldown") then
+			LocalPlayer.Character.Communicate:FireServer({
+				["Goal"] = "Console Move",
+				["Tool"] = LocalPlayer.Backpack:WaitForChild("Ignition Burst")
+			})
+			task.wait(1)
+			killing = true
+
+			coroutine.wrap(function()
+				repeat
+					local cf = char.HumanoidRootPart.CFrame
+					LocalPlayer.Character.HumanoidRootPart.CFrame = cf - (cf.LookVector * 7)
+					task.wait()
+				until not killing
+			end)()
+
+			task.wait(1.5)
 			killing = false
 		end
 	end)
@@ -56,7 +78,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 		LocalPlayer:Kick("this script only works with destructive cyborg!")
 	end
 
-	if not killing then
+	if not killing and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 		LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 200, 0)
 	end
 end)
