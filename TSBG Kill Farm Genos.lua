@@ -11,7 +11,7 @@ local function onCharAdded(char)
 			print("start")
 
 			local cf = char.HumanoidRootPart.CFrame
-			LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(char.HumanoidRootPart.Position + Vector3.new(0, 10, 40), Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
+			LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(char.HumanoidRootPart.Position + Vector3.new(0, 15, 40), Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
 
 			task.wait(0.1)
 			LocalPlayer.Character.Communicate:FireServer({
