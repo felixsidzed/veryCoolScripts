@@ -51,7 +51,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 	end
 
 	if not killing then
-		LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 200, 0)
+		LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 225, 0)
 	end
 end)
 
