@@ -10,8 +10,14 @@ local function onCharAdded(char)
 			killing = true
 			print("start")
 
-			local cf = char.HumanoidRootPart.CFrame
-			LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cf.Position.X, cf.Position.Y + 15, cf.Position.Z + 40), Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
+			coroutine.wrap(function()
+				local s = tick()
+				while tick() - s < 4 do
+					local cf = char.HumanoidRootPart.CFrame
+					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cf.Position.X, cf.Position.Y, cf.Position.Z + 65) + char.Humanoid.MoveDirection * char.Humanoid.WalkSpeed, Vector3.new(char.HumanoidRootPart.Position.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, char.HumanoidRootPart.Position.Z))
+					task.wait()
+				end
+			end)()
 
 			task.wait(0.25)
 			LocalPlayer.Character.Communicate:FireServer({
