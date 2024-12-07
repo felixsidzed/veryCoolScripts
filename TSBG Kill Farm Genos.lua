@@ -63,12 +63,12 @@ local function onCharAdded(char)
 			coroutine.wrap(function()
 				repeat
 					local cf = char.HumanoidRootPart.CFrame
-					LocalPlayer.Character.HumanoidRootPart.CFrame = cf - (cf.LookVector * 7)
+					LocalPlayer.Character.HumanoidRootPart.CFrame = cf - (cf.LookVector * 7) + char.Humanoid.MoveDirection
 					task.wait()
 				until not killing
 			end)()
 
-			task.wait(1.5)
+			task.wait(1.25)
 			killing = false
 		end
 	end)
