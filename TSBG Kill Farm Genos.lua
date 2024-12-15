@@ -10,6 +10,20 @@ local function onCharAdded(char)
 		if killing then return end
 		if chargeUp then return end
 
+		for _, player in game.Players:GetPlayers() do
+			if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+				local distance = (player.Character.HumanoidRootPart.Position - char.HumanoidRootPart.Position).Magnitude
+
+				if distance <= 50 then
+					-- print(player.DisplayName, player.Character:GetAttribute("Character"), player.Character:GetAttribute("Ulted"))
+					if player.Character:GetAttribute("Ulted") and player.Character:GetAttribute("Character") == "Bald" then
+						warn("fat ass saitama with ult detected!! aborting kill steal")
+						return
+					end
+				end
+			end
+		end
+
 		if not LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["4"].Base:FindFirstChild("Cooldown") then
 			killing = true
 
