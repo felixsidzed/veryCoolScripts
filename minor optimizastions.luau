@@ -4,11 +4,7 @@ local function r(o)
 	end
 	if workspace:FindFirstChild("Thrown") and workspace.Thrown:IsAncestorOf(o) then
 		if o.Name:lower():match("debris") or o.Name == "Part" then
-			local g = CFrame.new()
-			for _=1,5 do
-				o.CFrame = g
-				task.wait()
-			end
+			game:GetService("Debris"):AddItem(o, task.wait())
 		end
 	end
 end
