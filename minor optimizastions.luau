@@ -2,14 +2,16 @@ local function r(o)
 	if o:IsA("Trail") or o:IsA("Decal") then
 		o.Texture = "rbxassetid://0"
 	end
-
 	if workspace:FindFirstChild("Thrown") and workspace.Thrown:IsAncestorOf(o) then
 		if o.Name:lower():match("debris") or o.Name == "Part" then
-			o.Transparency = 1
+			local g = CFrame.new()
+			for _=1,5 do
+				o.CFrame = g
+				task.wait()
+			end
 		end
 	end
 end
-
 for _, o in workspace:GetDescendants() do
 	r(o)
 end
