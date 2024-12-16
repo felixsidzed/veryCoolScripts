@@ -5,7 +5,7 @@ local function r(o)
 
 	if workspace:FindFirstChild("Thrown") and workspace.Thrown:IsAncestorOf(o) then
 		if o.Name:lower():match("debris") or o.Name == "Part" then
-			game:GetService("Debris"):AddItem(o, task.wait())
+			o.Transparency = 1
 		end
 	end
 end
