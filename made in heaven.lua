@@ -1,4 +1,6 @@
 local speedBoost = (getgenv().speed or 1) * 10
+local tpRange = getgenv().tpRange or 5
+local tpSpeed = getgenv().tpSpeed or 50
 
 local player = game.Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
@@ -39,7 +41,6 @@ end)
 -- end)
 
 clone.Parent = workspace
-workspace.CurrentCamera.CameraSubject = clone:WaitForChild("Humanoid")
 char.Archivable = false
 clone.Name = "Afterimage"
 
@@ -64,13 +65,14 @@ con = game:GetService("RunService").Heartbeat:Connect(function(delta)
 	clone.Head.Anchored = char.Head.Anchored
 	clone.Humanoid.WalkSpeed = char.Humanoid.WalkSpeed
 	clone.HumanoidRootPart.Velocity = char.HumanoidRootPart.Velocity
+	workspace.CurrentCamera.CameraSubject = clone:WaitForChild("Humanoid")
 
 	clone.Humanoid:Move(char.Humanoid.MoveDirection)
 	clone.Humanoid:ChangeState(char.Humanoid:GetState())
 	
 	clone:TranslateBy(clone.Humanoid.MoveDirection * delta * speedBoost)
 
-	char.HumanoidRootPart.CFrame = clone.HumanoidRootPart.CFrame * CFrame.new(math.sin(tick() * 50) * 5, 0, 0)
+	char.HumanoidRootPart.CFrame = clone.HumanoidRootPart.CFrame * CFrame.new(math.sin(tick() * tpSpeed) * tpRange, 0, 0)
 end)
 
 
